@@ -3,9 +3,23 @@ console.log("Starting app.js");
 const fs = require('fs');
 const note = require('./note.js');
 const _ = require('lodash');
+const yargs = require('yargs');
 
-console.log(_.isString(true));
-console.log(_.uniq([2,3,4,5,4,32,2]));
+const argv = yargs.argv;
+const input = argv._[0];
 
-let argument = process.argv[2];
-console.log(argument);
+if (input === 'add') {
+  note.addNote(argv.title, argv.body);
+}
+else if (input === 'list') {
+  note.getAll();
+}
+else if (input === 'read') {
+  note.getNote(argv.title);
+}
+else if (input === 'remove') {
+  note.removeNote(argv.title);
+}
+else {
+  console.log('Please insert a correct flag!');
+}
