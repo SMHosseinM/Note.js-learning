@@ -39,11 +39,17 @@ const getAll = () => {
 };
 
 const getNote = (title) => {
-  console.log('Reading Note', title);
+  const currentNotes = loadFile();
+  const lookingNote = currentNotes.filter((note) => note.title === title);
+  if(lookingNote.length > 0)
+    return lookingNote[0];
 }
 
 const removeNote = (title) => {
-  console.log('Removing', title);
+  const arrOfJSON = loadFile();
+  let filterArrayOfJSON = arrOfJSON.filter((note) => note.title !== title);
+  writeFile(filterArrayOfJSON);
+  return arrOfJSON.length !== filterArrayOfJSON.length;
 }
 
 module.exports = {
