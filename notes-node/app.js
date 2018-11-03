@@ -1,5 +1,6 @@
 console.log("Starting app.js");
 
+
 const fs = require('fs');
 const note = require('./note.js');
 const _ = require('lodash');
@@ -9,7 +10,13 @@ const argv = yargs.argv;
 const input = argv._[0];
 
 if (input === 'add') {
-  note.addNote(argv.title, argv.body);
+  let result = note.addNote(argv.title, argv.body);
+  if(result !== undefined)
+  { 
+    console.log('note get added.');
+  }
+  else
+    console.log(argv.title + 'Note did not get added.')
 }
 else if (input === 'list') {
   note.getAll();
