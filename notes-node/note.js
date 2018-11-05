@@ -1,5 +1,3 @@
-console.log('Starting notes.js');
- 
 const fs = require('fs');
 
 let loadFile = () => {
@@ -17,7 +15,6 @@ const writeFile = (notes) => {
 
 const addNote = (title, body) => {
   let notes = loadFile();
-  console.log(notes)
   
   const note = {
     title,
@@ -35,7 +32,7 @@ const addNote = (title, body) => {
 };
 
 const getAll = () => {
-  console.log('Getting all lists');
+  return loadFile();
 };
 
 const getNote = (title) => {
@@ -52,9 +49,15 @@ const removeNote = (title) => {
   return arrOfJSON.length !== filterArrayOfJSON.length;
 }
 
+const display = (title, body) => {
+  console.log('title: ', title);
+  console.log('body: ', body);
+  console.log("*************");
+}
 module.exports = {
   addNote,
   getAll,
   getNote,
-  removeNote
+  removeNote,
+  display
 }
